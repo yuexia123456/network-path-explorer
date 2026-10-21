@@ -1,0 +1,7 @@
+.DS_Store
+.superpowers/
+.worktrees/
+target/
+dist/
+web/node_modules/
+web/dist/

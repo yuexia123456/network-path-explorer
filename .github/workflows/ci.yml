@@ -1,0 +1,31 @@
+name: macOS checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install frontend dependencies
+        run: npm --prefix web ci
+      - name: Frontend tests
+        run: npm --prefix web test
+      - name: Build embedded frontend
+        run: npm --prefix web run build
+      - name: Rust formatting
+        run: cargo fmt --all -- --check
+      - name: Rust tests
+        run: cargo test --workspace
+      - name: Rust lint
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings

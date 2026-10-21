@@ -1,0 +1,37 @@
+[package]
+name = "network-path-agent"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.98"
+license = "MIT"
+description = "Local-first macOS network diagnostics with evidence-backed proxy decisions"
+repository = "https://github.com/yuexia123456/network-path-explorer"
+
+[dependencies]
+async-trait = "0.1"
+axum = { version = "0.8.9", features = ["macros"] }
+bytes = "1.12.1"
+futures-util = "0.3"
+http-body-util = "0.1"
+hyper = { version = "1.11.0", features = ["client", "http1"] }
+hyper-util = { version = "0.1.20", features = ["server-auto", "service", "tokio"] }
+if-addrs = "0.15.0"
+reqwest = { version = "0.13.4", default-features = false, features = ["http2", "json", "rustls", "socks", "stream"] }
+rustls = "0.23"
+rust-embed = { version = "8.12.0", features = ["axum", "debug-embed", "deterministic-timestamps"] }
+mime_guess = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+time = { version = "0.3.55", features = ["formatting", "parsing"] }
+tokio = { version = "1", features = ["io-util", "macros", "net", "process", "rt-multi-thread", "signal", "sync", "time", "test-util"] }
+tokio-util = { version = "0.7.19", features = ["rt"] }
+tokio-tungstenite = "0.30.0"
+tower = { version = "0.5", features = ["util"] }
+tower-http = { version = "0.6", features = ["trace"] }
+url = { version = "2", features = ["serde"] }
+uuid = { version = "1", features = ["serde", "v4"] }
+
+[dev-dependencies]
+rcgen = "0.13"
+tokio-rustls = "0.26"
